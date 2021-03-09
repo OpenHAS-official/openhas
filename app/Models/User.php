@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 
 class User extends Authenticatable
 {
@@ -17,9 +18,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
+        'company',
         'email',
         'password',
+        'address1',
+        'address2',
+        'postcode',
+        'city',
+        'state_region',
+        'country',
+        'phone',
+        'metadata',
     ];
 
     /**
@@ -39,5 +50,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone' => E164PhoneNumberCast::class,
+        'metadata' => 'array',
     ];
 }
