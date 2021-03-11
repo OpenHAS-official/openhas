@@ -38,7 +38,7 @@ class CreateNewUser implements CreatesNewUsers
             'city' => ['required', 'string', 'max:255'],
             'state_region' => ['nullable', 'string', 'max:255'],
             'country' => ['required', 'string', 'max:255'],
-            'phone' => ['nullable', 'phone'],
+            'phone' => ['nullable', 'phone:AUTO'],
             'metadata' => ['nullable'],
         ])->validate();
 

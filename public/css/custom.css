@@ -1,0 +1,36 @@
+.sw label.error {
+    color: var(--tblr-danger);
+}
+.sw input.error {
+    border-color: var(--tblr-danger);
+}
+.sw .toolbar>.btn.disabled, .sw .toolbar>.btn:disabled {
+    display: none;
+}
+.sw .toolbar>.btn.disabled + button, .sw .toolbar>.btn:disabled + button {
+    margin-left: 0;
+    margin-right: 0;
+}
+.sw .toolbar.toolbar-bottom {
+    padding: 1rem .5rem;
+}
+.sw .toolbar .btn.sw-btn-prev {
+    margin-left: 0;
+}
+.sw-theme-arrows>.nav .nav-link.done {
+    background: var(--tblr-primary)!important;
+    border-color: var(--tblr-primary)!important;
+}
+.sw-theme-arrows>.nav .nav-link.done::after {
+    border-left-color: var(--tblr-primary)!important;
+}
+.sw-theme-arrows>.nav .nav-link.active {
+    background: var(--tblr-info)!important;
+    border-color: var(--tblr-info)!important;
+}
+.sw-theme-arrows>.nav .nav-link.active::after {
+    border-left-color: var(--tblr-info)!important;
+}
+.sw ul.nav li:last-child {
+    background-color: #f8f8f8!important;
+}
