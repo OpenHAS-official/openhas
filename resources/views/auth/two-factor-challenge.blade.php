@@ -8,7 +8,7 @@
     @csrf
     <div class="card-body">
         <h2 class="mb-0 text-center">@lang('auth.twofactor.title')</h2>
-        <p class=" mb-3 text-center">@lang('auth.twofactor.help')</p>`
+        <p class=" mb-3 text-center">@lang('auth.twofactor.help')</p>
 
         <div id="code" class="form-group mb-3 ">
             <label class="form-label">@lang('auth.twofactor.code')</label>
