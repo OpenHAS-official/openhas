@@ -1,8 +1,37 @@
+:root{
+    --openhas-blue: #206bc4;
+    --openhas-azure: #4299e1;
+    --openhas-indigo: #4263eb;
+    --openhas-purple: #ae3ec9;
+    --openhas-pink: #d6336c;
+    --openhas-red: #d63939;
+    --openhas-orange: #f76707;
+    --openhas-yellow: #f59f00;
+    --openhas-lime: #74b816;
+    --openhas-green: #24c178;
+    --openhas-teal: #0ca678;
+    --openhas-cyan: #17a2b8;
+    --openhas-primary: #24c178;
+    --openhas-secondary: #206bc4;
+    --openhas-success: #2fb344;
+    --openhas-info: #4299e1;
+    --openhas-warning: #f76707;
+    --openhas-danger: #d63939;
+    --openhas-light: #f4f6fa;
+    --openhas-dark: #232e3c;
+    --openhas-font-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+    --openhas-font-monospace: null, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    --openhas-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --tblr-primary: #24c178;
+    --tblr-secondary: #206bc4;
+    --tblr-green: #24c178;
+}
+
 .sw label.error {
-    color: var(--tblr-danger);
+    color: var(--openhas-danger);
 }
 .sw input.error {
-    border-color: var(--tblr-danger);
+    border-color: var(--openhas-danger);
 }
 .sw .toolbar>.btn.disabled, .sw .toolbar>.btn:disabled {
     display: none;
@@ -18,18 +47,18 @@
     margin-left: 0;
 }
 .sw-theme-arrows>.nav .nav-link.done {
-    background: var(--tblr-primary)!important;
-    border-color: var(--tblr-primary)!important;
+    background: var(--openhas-primary)!important;
+    border-color: var(--openhas-primary)!important;
 }
 .sw-theme-arrows>.nav .nav-link.done::after {
-    border-left-color: var(--tblr-primary)!important;
+    border-left-color: var(--openhas-primary)!important;
 }
 .sw-theme-arrows>.nav .nav-link.active {
-    background: var(--tblr-info)!important;
-    border-color: var(--tblr-info)!important;
+    background: var(--openhas-info)!important;
+    border-color: var(--openhas-info)!important;
 }
 .sw-theme-arrows>.nav .nav-link.active::after {
-    border-left-color: var(--tblr-info)!important;
+    border-left-color: var(--openhas-info)!important;
 }
 .sw ul.nav li:last-child {
     background-color: #f8f8f8!important;
