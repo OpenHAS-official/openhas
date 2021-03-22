@@ -63,3 +63,6 @@
 .sw ul.nav li:last-child {
     background-color: #f8f8f8!important;
 }
+.preferences-icon {
+    margin-left: 0rem!important;
+}

@@ -21,3 +21,9 @@ Route::get('/', function () {
 Route::get('/home', function(){
     return view('clientarea.home');
 })->middleware('verified');
+    Route::get('address', function(){
+        return view('admin.account.address');
+    })->name('account.address');
+    Route::get('preferences', function(){
+        return view('admin.account.preferences');
+    })->name('account.preferences');
