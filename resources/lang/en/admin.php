@@ -6,6 +6,19 @@ return [
     ],
     'account' => [
         'title' => 'Account',
+        'index' => [
+            'title' => 'General Settings',
+            'description' => 'Your data belongs only to you. You can modify all your data yourself without the intervention of one of our employees. In addition, you are able to secure your account with two-factor authentication and manage your (language) preferences or choose your theme.',
+            'name' => [
+                'title' => 'Name',
+            ],
+            'email' => [
+                'title' => 'Email',
+            ],
+            'company' => [
+                'title' => 'Company',
+            ],
+        ],
         'security' => [
             'title' => 'Security Settings',
             'description' => 'On this page you are able to adjust your security settings. You can set up a two-factor authentication device and you can see the devices you are logged into. You\'re also able to change your password.',
@@ -39,13 +52,17 @@ return [
             'password' => [
                 'title' => 'Change Password',
                 'description' => 'You can change your password below. Do this by entering your current password and then your new password plus a confirmation of that. Then press save. Have you forgotten your current password? Please contact customer service or use the forgot password function when you\'re logged out.',
+                'strength' => 'Please note that your password must be 8 characters or more with at least one lowercase, one uppercase, one number and one special character.',
                 'current' => 'Current Password',
                 'new' => 'New Password',
                 'confirm' => 'Confirm New Password',
                 'save' => 'Save',
             ],
-            'session' => [
+            'sessions' => [
                 'title' => 'Active Sessions',
+                'description' => 'Below is an overview of all the devices/browsers that you are logged into. You will also find the date of your last activity with that session and you have the option to disable any or all sessions.',
+                'agent' => 'User Agent / Device',
+                'last' => 'Last Activity',
             ],
         ],
         'address' => [
@@ -55,12 +72,16 @@ return [
             'title' => 'Preferences',
             'description' => 'Change the preferences for the '.config('app.name').' portal. You can choose your language or theme, for example.',
             'theme' => [
+                'title' => 'Theme',
                 'defaulttitle' => 'Default',
                 'defaultdescription' => 'Follow your device\'s settings.',
                 'darktitle' => 'Dark',
                 'darkdescription' => 'Always display the portal in dark mode.',
                 'lighttitle' => 'Light',
                 'lightdescription' => 'Always display the portal in light mode.',
+            ],
+            'language' => [
+                'title' => 'Language',
             ],
         ],
         'active' => 'Active',

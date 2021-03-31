@@ -28,8 +28,8 @@
     @yield('styles')
 </head>
 
-<body class="antialiased">
-    <div class="page">
+<body class="antialiased" data-preferences-theme="{{ (Auth::user()->metadata['preferences']['theme']) ? Auth::user()->metadata['preferences']['theme'] : '' }}">
+    <div class="wrapper">
         <header class="navbar navbar-expand-md navbar-light d-print-none">
             <div class="container-xl">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
@@ -93,7 +93,7 @@
                 <div class="navbar navbar-light">
                     <div class="container-xl">
                         <ul class="navbar-nav">
-                            <li class="nav-item active">
+                            <li class="nav-item {{ (request()->is('home*')) ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('home') }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block"><svg
                                             xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -372,22 +372,17 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./docs/index.html">
-                                    <span class="nav-link-icon d-md-none d-lg-inline-block"><svg
-                                            xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                                            <path
-                                                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                                            <line x1="9" y1="9" x2="10" y2="9" />
-                                            <line x1="9" y1="13" x2="15" y2="13" />
-                                            <line x1="9" y1="17" x2="15" y2="17" /></svg>
+                            <li class="nav-item {{ (request()->is('account*')) ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('account.index') }}">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                        </svg>
                                     </span>
                                     <span class="nav-link-title">
-                                        Documentation
+                                        @lang('admin.account.title')
                                     </span>
                                 </a>
                             </li>
@@ -430,8 +425,8 @@
                 <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                     <ul class="list-inline list-inline-dots mb-0">
                         <li class="list-inline-item">
-                            Copyright &copy; 2021
-                            <a href=".." class="link-secondary">Tabler</a>.
+                            Copyright &copy; {{ date("Y") }}
+                            <a href="https://openhas.net" class="link-secondary">OpenHAS</a>.
                             All rights reserved.
                         </li>
                         <li class="list-inline-item">
@@ -447,10 +442,10 @@
 
     <!-- Libs JS -->
     <script src="{{ asset('/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Tabler Core -->
     <script src="{{ asset('/js/tabler.min.js') }}"></script>
     <!-- Other Scripts -->
+    <script src="{{ asset('/js/custom.js') }}"></script>
     @yield('scripts')
 </body>
 

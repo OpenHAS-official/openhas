@@ -2,7 +2,7 @@
 __('admin.account.security.description')])
 
 @section('content')
-<div class="content">
+<div class="page-wrapper">
     <div class="container-xl">
         <div class="content">
             <div class="container-xl">
@@ -16,99 +16,106 @@ __('admin.account.security.description')])
                         </div>
                     </div>
                 </div>
-                <div class="row gx-lg-4">
-                    @include('admin.account.sidebar')
-                    <div class="col-lg-9">
-                        @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                        @endif
+                <div class="page-body">
+                    <div class="row gx-lg-4">
+                        @include('admin.account.sidebar')
+                        <div class="col-lg-9">
+                            @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                            @endif
 
-                        @if ($errors->any())
-                        <div class="alert alert-danger" role="alert">
-                            {{ $errors->first() }}
-                        </div>
-                        @endif
+                            @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                {{ $errors->first() }}
+                            </div>
+                            @endif
 
-                        <div class="card card-lg">
-                            <div class="card-body">
-                                <div>
-                                    <div class="d-flex mb-3">
-                                        <h1 class="m-0">@lang('admin.account.security.title')</h1>
-                                    </div>
-                                </div>
-                                <p>@lang('admin.account.security.description')</p>
-
-                                <div class="mt-4">
-
-                                    @if(!auth()->user()->two_factor_secret)
-
-                                    {{-- 2FA Disabled --}}
-                                    <h3 id="2fa">@lang('admin.account.security.2fa.title')</h3>
-                                    <p>@lang('admin.account.security.2fa.description')</p>
-                                    <div class="alert alert-danger">
-                                        @lang('admin.account.security.2fa.disabled')
-                                    </div>
-                                    <button class="btn btn-primary" onclick="event.preventDefault(); enable2FA();" id="enable2FAButton"
-                                        data-bs-target="#enabletwofactormodal">
-                                        <span class="spinner-border spinner-border-sm me-2 d-none" role="status"
-                                            id="enable2FAButtonSpinner"></span>
-                                        @lang('admin.account.security.2fa.enable.openbutton')
-                                    </button>
-                                    <div id="qr"></div>
-
-                                    @else
-
-                                    {{-- 2FA Enabled --}}
-                                    <h3 id="2fa">@lang('admin.account.security.2fa.title')</h3>
-                                    <p>@lang('admin.account.security.2fa.description')</p>
-                                    <div class="alert alert-success">
-                                        @lang('admin.account.security.2fa.enabled')
-                                    </div>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#twofactorrecoverymodal">
-                                        @lang('admin.account.security.2fa.recovery.openbutton')
-                                    </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#disabletwofactormodal">
-                                        @lang('admin.account.security.2fa.disable.openbutton')
-                                    </button>
-
-                                    @endif
-                                </div>
-
-                                <div class="mt-4">
-                                    <h3 id="password">@lang('admin.account.security.password.title')</h3>
-                                    <p>@lang('admin.account.security.password.description')</p>
-                                    <form action="{{ route('user-password.update') }}" method="POST">
-                                        @method('PUT')
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label
-                                                class="form-label">@lang('admin.account.security.password.current')</label>
-                                            <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror" required
-                                                autocomplete="current-password" />
+                            <div class="card card-lg">
+                                <div class="card-body">
+                                    <div>
+                                        <div class="d-flex mb-3">
+                                            <h1 class="m-0">@lang('admin.account.security.title')</h1>
                                         </div>
+                                    </div>
+                                    <p>@lang('admin.account.security.description')</p>
 
-                                        <div class="mb-3">
-                                            <label
-                                                class="form-label">@lang('admin.account.security.password.new')</label>
-                                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" required
-                                                autocomplete="new-password" />
+                                    <div class="mt-4">
+
+                                        @if(!auth()->user()->two_factor_secret)
+
+                                        {{-- 2FA Disabled --}}
+                                        <h3 id="2fa">@lang('admin.account.security.2fa.title')</h3>
+                                        <p>@lang('admin.account.security.2fa.description')</p>
+                                        <div class="alert alert-danger">
+                                            @lang('admin.account.security.2fa.disabled')
                                         </div>
+                                        <button class="btn btn-primary" onclick="event.preventDefault(); enable2FA();" id="enable2FAButton" data-bs-toggle="modal"
+                                            data-bs-target="#enabletwofactormodal">
+                                            <span class="spinner-border spinner-border-sm me-2 d-none" role="status"
+                                                id="enable2FAButtonSpinner"></span>
+                                            @lang('admin.account.security.2fa.enable.openbutton')
+                                        </button>
+                                        <div id="qr"></div>
 
-                                        <div class="mb-3">
-                                            <label
-                                                class="form-label">@lang('admin.account.security.password.confirm')</label>
-                                            <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                required autocomplete="new-password" />
+                                        @else
+
+                                        {{-- 2FA Enabled --}}
+                                        <h3 id="2fa">@lang('admin.account.security.2fa.title')</h3>
+                                        <p>@lang('admin.account.security.2fa.description')</p>
+                                        <div class="alert alert-success">
+                                            @lang('admin.account.security.2fa.enabled')
                                         </div>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#twofactorrecoverymodal">
+                                            @lang('admin.account.security.2fa.recovery.openbutton')
+                                        </button>
+                                        <button class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#disabletwofactormodal">
+                                            @lang('admin.account.security.2fa.disable.openbutton')
+                                        </button>
 
-                                        <input type="submit"
-                                            class="btn btn-primary" value="@lang('admin.account.security.password.save')"/>
+                                        @endif
+                                    </div>
 
-                                    </form>
+                                    <div class="mt-4">
+                                        <h3 id="password">@lang('admin.account.security.password.title')</h3>
+                                        <p>@lang('admin.account.security.password.description')</p>
+                                        <p>@lang('admin.account.security.password.strength')</p>
+                                        <form action="{{ route('user-password.update') }}" method="POST">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label
+                                                    class="form-label">@lang('admin.account.security.password.current')</label>
+                                                <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror" required
+                                                    autocomplete="current-password" minlength="8" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label
+                                                    class="form-label">@lang('admin.account.security.password.new')</label>
+                                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" required
+                                                    autocomplete="new-password" minlength="8" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label
+                                                    class="form-label">@lang('admin.account.security.password.confirm')</label>
+                                                <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                    required autocomplete="new-password" minlength="8" />
+                                            </div>
+
+                                            <input type="submit"
+                                                class="btn btn-primary" value="@lang('admin.account.security.password.save')"/>
+                                        </form>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <h3 id="sessions">@lang('admin.account.security.sessions.title')</h3>
+                                        <p>@lang('admin.account.security.sessions.description')</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +273,6 @@ __('admin.account.security.description')])
         label.classList.add("bg-gray");
 
         httpPost("{{ url('/user/two-factor-authentication') }}", '_token={{ csrf_token() }}', function (response) {
-            enableTwoFactorModal.show();
             generateQR();
         });
     }
