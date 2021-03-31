@@ -55,4 +55,26 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone' => E164PhoneNumberCast::class,
         'metadata' => 'array',
     ];
+
+    /**
+     * Return Full Name
+     *
+     * @return string
+     */
+    function fullname() {
+        return "$this->firstname $this->lastname";
+    }
+
+    /**
+     * Return Avatar URL from storage or from Avatar API
+     *
+     * @return string
+     */
+    function avatar() {
+        if (isset($this->metadata['avatar'])) {
+            return $this->metadata['avatar'];
+        }
+        $fullname = urlencode($this->fullname());
+        return "https://api.proxeuse.com/avatars/api/?name=$fullname&background=24c178&color=fff";
+    }
 }

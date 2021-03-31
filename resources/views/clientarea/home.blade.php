@@ -55,4 +55,8 @@
         {{ __('Disable Two-Factor') }}
     </button>
 </form>
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit">Uitloggen</button>
+</form>
 @endif
