@@ -1,7 +1,6 @@
 <?php
 
-use App\Helpers\Session;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,23 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/home', function(){
-    return view('admin.home');
-})->middleware('verified')->name('home');
-
-Route::prefix('account')->middleware('verified')->group(function(){
-    Route::get('/', function(){
-        return view('admin.account.index');
-    })->name('account.index');
-    Route::get('security', function(Request $request){
-        return view('admin.account.security', ['sessions' => Session::getCurrentUser()]);
-    })->name('account.security')->middleware('password.confirm');
-    Route::get('address', function(){
-        return view('admin.account.address');
-    })->name('account.address');
-    Route::get('preferences', function(){
-        return view('admin.account.preferences');
-    })->name('account.preferences');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/account', [DashboardController::class, 'account'])->name('account');
 });

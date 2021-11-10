@@ -31,6 +31,15 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Views
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
+        Fortify::registerView(function () {
+            return view('auth.register');
+        });
+
+        // Others
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
@@ -43,37 +52,5 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
-
-        /*
-        |--------------------------------------------------------------------------
-        | Fortify Views
-        |--------------------------------------------------------------------------
-        |
-        | These functions will return Fortify with the correct blade view
-        | and registers the route.
-        |
-        */
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
-        Fortify::registerView(function () {
-            return view('auth.register');
-        });
-        Fortify::requestPasswordResetLinkView(function () {
-            return view('auth.forgot-password');
-        });
-        Fortify::resetPasswordView(function ($request) {
-            return view('auth.reset-password', ['request' => $request]);
-        });
-        Fortify::verifyEmailView(function () {
-            return view('auth.verify-email');
-        });
-        Fortify::confirmPasswordView(function () {
-            return view('auth.confirm-password');
-        });
-        Fortify::twoFactorChallengeView(function () {
-            return view('auth.two-factor-challenge');
-        });
-
     }
 }

@@ -1,100 +1,66 @@
-> :warning: **Still in development**: Please be aware that OpenHAS is still in active development and that the current version is not suitable for live use. Some links in this file may not work correctly. The (api) documentation is not yet available. The first version will hopefully be released soon.
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center"><a href="https://openhas.net" target="_blank"><img src="https://github.com/OpenHAS-official/media/raw/master/logo/gradient-fullslogan.svg?raw=true" alt="OpenHAS Logo" title="OpenHAS Logo" width="400"></a></p>
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## About OpenHAS
-[OpenHAS](https://openhas.net) is a completely new, ready-to-use, automation software specially developed for hosting businesses. The software is built on the Laravel PHP framework and is therefore extremely fast, easy to maintain and clear for other developers. The application has lots of advantages but the most important one is the fact that the software is 100% open-source. That bring some major advantages over closed-source alternatives. Having the ability to change every single line of code, be able to check for any privacy or security related flaws or add custom modules, it is all possible.
+## About Laravel
 
-### OpenHAS Cloud
-As soon as the first stable version (v1.0.0) of OpenHAS is published, the team will start working hard on a Cloud based version of OpenHAS. This cloud platform will be launched in cooperation with Proxeuse, initially only in Europe.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## Features
-Businesses can automate lots of proccesses when using OpenHAS. Admin users are able to shape the software to their likings, create products, manage the frontend, etc. using the API or the designated back-end. The frontend is build using templates and is therefore completely customizable. The client experience starts when they place an order by choosing (multiple) products, creating an account (or logging in), paying with any of the payment gateways in the list below and automatically having a hosting account created for them on any of the pre-configured servers. Admin users are notified by the new order via email and/or a via a notification service like [Rocket.Chat](https://github.com/RocketChat) or Slack.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## Modules
-### Hosting Panels
- - cPanel 86+
- - DirectAdmin 1.60+
- - Plesk 17.8+
- - Nextcloud 17+
- - Owncloud 10.3+
- - Pterodactyl 1.0+
-### Domain Registrars
- - Openprovider
- - Request others by creating an Issue.
-### Payment Providers
- - Stripe
- - PayPal
- - Mollie
- - Coinbase Commerce
- - Bank Transfer (manual)
-### Notification Providers
- - Email
- - Rocket.Chat
- - Slack
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Requirements
- - PHP 7.3+
-    - BCMath PHP Extension
-    - Ctype PHP Extension
-    - cURL PHP Extension
-    - Fileinfo PHP Extension
-    - JSON PHP Extension
-    - Mbstring PHP Extension
-    - OpenSSL PHP Extension
-    - PDO PHP Extension
-    - Tokenizer PHP Extension
-    - XML PHP Extension
- - PHP Composer
- - A database, either:
-    - MySQL 5.6+ or,
-    - PostgresQL 9.4+ or,
-    - SQLite 3.3.8+
- - Apache, NGINX or any other PHP compatible webserver
- - SMTP account (or any other mail delivery account [supported by Laravel](https://laravel.com/docs/8.x/mail))
- - Access to the Command Line (SSH)
+## Learning Laravel
 
-## Installation
-The installation of OpenHAS is fairly simple for experienced users. Below is a basic explanation of how to install OpenHAS with the help of Composer.
- 1. Download the latest release file to your local machine.
- 2. Unzip the downloaded file.
- 3. Upload the unzipped folder to your webserver via (S)FTP or the online file manager provided by your hosting provider.
- 4. Run the `php artisan openhas:install` command in your SSH console. It will lead you through the installation proccess and check if all required PHP extensions are available.
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-Do you get an error message like `Command 'php' not found`? Or do you need help with executing command lines? Then check our [documentation](https://docs.openhas.net/URL_INVULLEN) which has help guides for the most popular hosting panels such as cPanel, DirectAdmin and Plesk. If the guide can't help you, please [open an Issue](https://github.com/OpenHAS-official/openhas/issues/new) on Github.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Documentation
-All documentation files are listed in a [separate Github repository](https://github.com/OpenHAS-official/docs) but are also available on our [online documentation portal](https://docs.openhas.net).
+## Laravel Sponsors
 
-## API
-OpenHAS features an extensive and secure REST API. It allows both clients and admins to perform certain tasks from within another application. API keys can be issued by clients and admins in respectively the front-end and the back-end. Full documentation can be [found online](https://api.openhas.net).
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-## Translations
-The primary language of OpenHAS is English but it has a 100% completed translation for Dutch. You are able to translate OpenHAS into the language of your liking by creating new language files. More information can be found in our [documentation](https://docs.openhas.net/URL_INVULLEN). You would help us and the community enormously by adding your translation to the OpenHAS repository. If you would like more information about this, please [create an issue](https://github.com/OpenHAS-official/openhas/issues/new).
+### Premium Partners
 
-## Custom Modules
-Do you need other domain registrars, hosting panels or payment gateways to be added? Feel free to [open an Issue](https://github.com/OpenHAS-official/openhas/issues/new), develop it yourself and open a pull request or contact the main developer directly at <roelreijneveld@proxeuse.com>.
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[CMS Max](https://www.cmsmax.com/)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
+- **[Romega Software](https://romegasoftware.com)**
 
-## Contributors
- - Proxeuse (Domain registration, webhosting and other supplies and services) | [Website](https://www.proxeuse.com/) | [Github](https://github.com/Proxeuse)
- - Roel Reijneveld (Main Developer) | [Website](https://roelreijneveld.nl) | [Github](https://github.com/RoelReijn) | [LinkedIn](https://linkedin.com/in/roelreijneveld) | [Twitter](https://twitter.com/roelreijneveld)
+## Contributing
 
-## About the developer
-Roel Reijneveld is a 16-year-old student from the Netherlands. He is currently in his fifth year of the six-year preparatory scientific education course at [Het Streek Lyceum](https://www.hetstreek.nl/bovenbuurtweg). His passion for technology started with his birth and at the age of six/seven he started making websites with free to use drag-and-drop builders. In the first year of his current study, a school project took place in which the assignment was to create a website with WordPress. This was the first contact with a PHP application and the concept of webhosting and was the reason for founding his own company (Proxeuse) in August 2018. Since then, Roel has focused his business on high quality, privacy-friendly services and with that, his customer base has been growing. Halfway through 2019 Roel started writing simple PHP scripts and plugins. After that Roel learned the basics of the Laravel framework and developed the idea for an open-source hosting automation system in early 2020.
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
-Open Source Hosting Automation Software (OpenHAS)
-Copyright (C) 2020 Roel Reijneveld
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

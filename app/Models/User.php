@@ -2,41 +2,44 @@
 
 namespace App\Models;
 
+use App\Traits\Uuids;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
-use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
-    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable, Uuids;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
         'firstname',
         'lastname',
-        'company',
         'email',
         'password',
         'address1',
         'address2',
         'postcode',
         'city',
-        'state_region',
+        'region',
         'country',
         'phone',
+        'company',
+        'company_vat',
+        'company_registration',
+        'preferences',
+        'active',
         'metadata',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that should be hidden for serialization.
      *
      * @var array
      */
@@ -46,35 +49,47 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * The attributes that should be cast.
      *
      * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'phone' => E164PhoneNumberCast::class,
+        'preferences' => 'array',
         'metadata' => 'array',
     ];
 
     /**
-     * Return Full Name
+     * Return the full name
      *
      * @return string
      */
-    function fullname() {
+    public function getFullNameAttribute()
+    {
         return "$this->firstname $this->lastname";
     }
 
     /**
-     * Return Avatar URL from storage or from Avatar API
+     * Return the address
      *
      * @return string
      */
-    function avatar() {
-        if (isset($this->metadata['avatar'])) {
-            return $this->metadata['avatar'];
+    public function getAddressAttribute()
+    {
+        if ($this->addressIsSet()) {
+            if ($this->address2) {
+                return "$this->address1 $this->address2, $this->postcode $this->city, $this->region, $this->country";
+            }
+            return "$this->address1, $this->postcode $this->city, $this->region, $this->country";
         }
-        $fullname = urlencode($this->fullname());
-        return "https://api.proxeuse.com/avatars/api/?name=$fullname&background=24c178&color=fff";
+        return null;
+    }
+
+    protected function addressIsSet()
+    {
+        if ($this->address1 && $this->postcode && $this->city && $this->country) {
+            return true;
+        }
+        return false;
     }
 }

@@ -20,6 +20,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+
             'email' => [
                 'required',
                 'string',
@@ -27,15 +28,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
-            'address1' => ['required', 'string', 'max:255'],
-            'address2' => ['nullable', 'string', 'max:255'],
-            'postcode' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'state_region' => ['nullable', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:255'],
-            'phone' => ['nullable', 'phone:AUTO'],
-            'company' => ['nullable', 'string', 'max:255'],
-            'metadata' => ['nullable'],
         ])->validateWithBag('updateProfileInformation');
 
         if ($input['email'] !== $user->email &&
@@ -43,19 +35,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
-                'firstname' => $input['firstname'],
-                'lastname' => $input['lastname'],
-                'company' => $input['company'],
+                'name' => $input['name'],
                 'email' => $input['email'],
-                'password' => Hash::make($input['password']),
-                'address1' => $input['address1'],
-                'address2' => $input['address2'],
-                'postcode' => $input['postcode'],
-                'city' => $input['city'],
-                'state_region' => $input['state_region'],
-                'country' => $input['country'],
-                'phone' => $input['phone'],
-                'metadata' => $input['metadata'],
             ])->save();
         }
     }
@@ -70,19 +51,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     protected function updateVerifiedUser($user, array $input)
     {
         $user->forceFill([
-            'firstname' => $input['firstname'],
-            'lastname' => $input['lastname'],
-            'company' => $input['company'],
+            'name' => $input['name'],
             'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-            'address1' => $input['address1'],
-            'address2' => $input['address2'],
-            'postcode' => $input['postcode'],
-            'city' => $input['city'],
-            'state_region' => $input['state_region'],
-            'country' => $input['country'],
-            'phone' => $input['phone'],
-            'metadata' => $input['metadata'],
             'email_verified_at' => null,
         ])->save();
 

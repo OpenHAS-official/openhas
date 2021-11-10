@@ -1,50 +1,64 @@
 @extends('layouts.auth')
 
-@section('title', __('auth.login.title'))
-
+@section('title', 'Login')
 @section('content')
-
-<form method="POST" action="{{ route('login') }}" class="card card-md">
-    @csrf
-    <div class="card-body">
-        <h2 class="mb-3 text-center">@lang('auth.login.title')</h2>
-
-        <div class="mb-3">
-            <label class="form-label">@lang('auth.login.fields.email')</label>
-            <input class="form-control" type="email" name="email" placeholder="@lang('auth.login.placeholder.email')"
-                value="{{ old('email') }}" required autofocus tabindex="1" />
+<h2 class="auth-heading text-center mb-5">
+    Log in to {{ env('APP_NAME') }}
+</h2>
+<div class="auth-form-container text-start">
+    <form class="auth-form login-form" method="POST" action="{{ url('login') }}">
+        @csrf
+        <div class="email mb-3">
+            <label class="sr-only" for="email">
+                Email
+            </label>
+            <input id="email" name="email" type="email"
+                class="form-control signin-email" placeholder="Email Address" required="required" autofocus>
         </div>
-
-        <div class="mb-2">
-            <label class="form-label">
-                @lang('auth.login.fields.password')
-                @if(Route::has('password.request'))
-                <span class="form-label-description">
-                    <a href="{{ route('password.request') }}">@lang('auth.login.placeholder.forgotpassword')</a>
-                </span>
+        <!--//form-group-->
+        <div class="password">
+            <label class="sr-only" for="password">Password</label>
+            <input id="password" name="password" type="password"
+                class="form-control signin-password" placeholder="Password" required="required">
+            <!--//extra-->
+        </div>
+        <div class="my-2">
+            <div class="extra row justify-content-between">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="remember"
+                            id="RememberPassword">
+                        <label class="form-check-label" for="RememberPassword">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+                <!--//col-6-->
+                @if (Route::has('password.request'))
+                <div class="col">
+                    <div class="forgot-password text-end">
+                        <a href="{{ route('password.request') }}">
+                            Forgot password?
+                        </a>
+                    </div>
+                </div>
                 @endif
-            </label>
-            <input class="form-control" type="password" name="password"
-                placeholder="@lang('auth.login.placeholder.password')" value="{{ old('password') }}" required
-                tabindex="2" />
+                <!--//col-6-->
+            </div>
         </div>
+        <!--//form-group-->
+        <div class="text-center">
+            <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">
+                Log In
+            </button>
+        </div>
+    </form>
 
-        <div class="mb-2">
-            <label class="form-check">
-                <input type="checkbox" name="remember" class="form-check-input" tabindex="3" />
-                <span class="form-check-label">@lang('auth.login.rememberme')</span>
-            </label>
-        </div>
-        <div class="form-footer">
-            <button type="submit" class="btn btn-primary w-100" tabindex="4">@lang('auth.login.submit')</button>
-        </div>
+    @if(Route::has('register'))
+    <div class="auth-option text-center pt-5">
+        No Account? Sign up
+        <a class="text-link" href="{{ route('register') }}"> here</a>.
     </div>
-</form>
-
-@if(Route::has('register'))
-<div class="text-center text-muted mt-3">
-   @lang('auth.login.registertext') <a href="{{ route('register') }}" tabindex="-1">@lang('auth.login.registerlink')</a>
+    @endif
 </div>
-@endif
-
 @endsection
