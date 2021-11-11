@@ -23,17 +23,19 @@ class UpdateCompany extends Component
 
     public function validateVAT()
     {
-        $response = Http::withOptions(['verify' => false])->get('https://controleerbtwnummer.eu/api/validate/'.$this->user->company_vat.'.json');
-        if ($response['valid'] && mb_strtolower($response['name']) == mb_strtolower($this->user->company)) {
-            $this->user->forceFill([
-                'metadata->vat_exempt' => true,
-            ])->save();
-            session()->flash('vatValidation', 'is-valid');
-        } else{
-            $this->user->forceFill([
-                'metadata->vat_exempt' => false,
-            ])->save();
-            session()->flash('vatValidation', 'is-invalid');
+        if ($this->user->company && $this->user->company_vat) {
+            $response = Http::withOptions(['verify' => false])->get('https://controleerbtwnummer.eu/api/validate/'.$this->user->company_vat.'.json');
+            if ($response['valid'] && mb_strtolower($response['name']) == mb_strtolower($this->user->company)) {
+                $this->user->forceFill([
+                    'metadata->vat_exempt' => true,
+                ])->save();
+                session()->flash('vatValidation', 'is-valid');
+            } else{
+                $this->user->forceFill([
+                    'metadata->vat_exempt' => false,
+                ])->save();
+                session()->flash('vatValidation', 'is-invalid');
+            }
         }
     }
 

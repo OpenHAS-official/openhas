@@ -164,9 +164,9 @@
                                     </div>
                                 </div>
                                 <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">
+                                    <button class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
                                         Change
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -308,5 +308,18 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <livewire:account.update-password :user="$user" />
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="change2FAModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <livewire:account.update-two-factor-authentication :user="$user" />
+        </div>
+    </div>
+</div>
 @endsection
