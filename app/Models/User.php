@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, Uuids;
 
@@ -77,10 +77,12 @@ class User extends Authenticatable
     public function getAddressAttribute()
     {
         if ($this->addressIsSet()) {
-            if ($this->address2) {
+            if ($this->address2 && $this->region) {
                 return "$this->address1 $this->address2, $this->postcode $this->city, $this->region, $this->country";
+            } elseif ($this->region) {
+                return "$this->address1, $this->postcode $this->city, $this->region, $this->country";
             }
-            return "$this->address1, $this->postcode $this->city, $this->region, $this->country";
+            return "$this->address1, $this->postcode $this->city, $this->country";
         }
         return null;
     }

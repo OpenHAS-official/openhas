@@ -16,7 +16,7 @@
 
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ asset('assets/css/portal.css') }}">
-
+    @livewireStyles
 </head>
 
 <body class="app">
@@ -178,7 +178,7 @@
                             </div>
                             <!--//app-utility-item-->
                             <div class="app-utility-item">
-                                <a href="settings.html" title="Settings">
+                                <a href="{{ route('dashboard.settings.index') }}" title="Settings">
                                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -196,8 +196,8 @@
                                     role="button" aria-expanded="false"><img src="{{ asset('assets/images/user.png') }}"
                                         alt="user profile"></a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                                    <li><a class="dropdown-item" href="{{ route('account') }}">Account</a></li>
-                                    <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.account') }}">Account</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.settings.index') }}">Settings</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -225,7 +225,7 @@
             <div class="sidepanel-inner d-flex flex-column">
                 <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
                 <div class="app-branding">
-                    <a class="app-logo" href="{{ route('dashboard') }}"><img class="logo-icon me-2" src="{{ asset('assets/images/app-logo.svg') }}"
+                    <a class="app-logo" href="{{ route('dashboard.index') }}"><img class="logo-icon me-2" src="{{ asset('assets/images/app-logo.svg') }}"
                             alt="logo"><span class="logo-text">OpenHAS</span></a>
 
                 </div>
@@ -235,7 +235,7 @@
                     <ul class="app-menu list-unstyled accordion" id="menu-accordion">
                         <li class="nav-item">
                             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                            <a class="nav-link {{ (request()->is('/dashboard')) ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                            <a class="nav-link {{ (request()->is('/dashboard')) ? 'active' : '' }}" href="{{ route('dashboard.index') }}">
                                 <span class="nav-icon">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -316,7 +316,7 @@
                                 <ul class="submenu-list list-unstyled">
                                     <li class="submenu-item"><a class="submenu-link"
                                             href="notifications.html">Notifications</a></li>
-                                    <li class="submenu-item"><a class="submenu-link" href="{{ route('account') }}">Account</a>
+                                    <li class="submenu-item"><a class="submenu-link" href="{{ route('dashboard.account') }}">Account</a>
                                     </li>
                                     <li class="submenu-item"><a class="submenu-link" href="settings.html">Settings</a>
                                     </li>
@@ -402,7 +402,7 @@
                         <ul class="app-menu footer-menu list-unstyled">
                             <li class="nav-item">
                                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                                <a class="nav-link" href="settings.html">
+                                <a class="nav-link" href="{{ route('dashboard.settings.index') }}">
                                     <span class="nav-icon">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -419,7 +419,7 @@
                             <!--//nav-item-->
                             <li class="nav-item">
                                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                                <a class="nav-link {{ (request()->is('dashboard/account*')) ? 'active' : '' }}" href="{{ route('account') }}">
+                                <a class="nav-link {{ (request()->is('dashboard/account*')) ? 'active' : '' }}" href="{{ route('dashboard.account') }}">
                                     <span class="nav-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
@@ -471,6 +471,7 @@
     <!-- Javascript -->
     <script src="{{ asset('assets/plugins/popper.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    @livewireScripts
 
     <!-- Charts JS -->
     <script src="{{ asset('assets/plugins/chart.js/chart.min.js') }}"></script>

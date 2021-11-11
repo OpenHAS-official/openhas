@@ -25,81 +25,7 @@
                         </div>
                     </div>
                     <div class="app-card-body px-4 w-100">
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label">
-                                        <strong>Name</strong>
-                                    </div>
-                                    <div class="item-data">
-                                        {{ $user->fullname }}
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <button class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#changeNameModal">
-                                        Change
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Email</strong></div>
-                                    <div class="item-data">{{ $user->email }}</div>
-                                </div>
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label">
-                                        <strong>Phone</strong>
-                                    </div>
-                                    <div class="item-data">
-                                        {{ ($user->phone) ?: 'Not set' }}
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">
-                                        Change
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label">
-                                        <strong>Address</strong>
-                                    </div>
-                                    <div class="item-data">
-                                        {{ ($user->address) ?: 'Not set' }}
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">
-                                        Change
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Company</strong></div>
-                                    <div class="item-data">
-                                        {{ ($user->company) ?: 'N/A'}}
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div>
-                            </div>
-                        </div>
+                        <livewire:account.profile :user="$user" />
                     </div>
                 </div>
             </div>
@@ -345,25 +271,42 @@
         </div>
     </div>
 </div>
-  <!-- Modal -->
-<div class="modal fade" id="changeNameModal" tabindex="-1" aria-labelledby="changeNameModalLabel" aria-hidden="true">
+
+<!-- Modal -->
+<div class="modal fade" id="changeNameModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="firstname">First Name</label>
-                    <input type="text" name="firstname" id="firstname" class="form-control" value="{{ $user->firstname }}">
-                </div>
-                <div class="">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $user->lastname }}">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary text-white">Save changes</button>
-            </div>
+            <livewire:account.update-full-name :user="$user" />
         </div>
     </div>
 </div>
+<div class="modal fade" id="changeEmailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <livewire:account.update-email :user="$user" />
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="changePhoneModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <livewire:account.update-phone :user="$user" />
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="changeAddressModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <livewire:account.update-address :user="$user" />
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="changeCompanyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <livewire:account.update-company :user="$user" />
+        </div>
+    </div>
+</div>
+
 @endsection
