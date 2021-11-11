@@ -479,6 +479,7 @@
 
     <!-- Page Specific JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    @yield('scripts')
 
 </body>
 

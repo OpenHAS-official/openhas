@@ -25,4 +25,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     Route::prefix('settings')->name('settings.')->group(function() {
         Route::get('/', [SettingsController::class, 'index'])->name('index');
     });
+    Route::get('/qr', function(){
+        return auth()->user()->twoFactorQrCodeSvg();
+    });
 });

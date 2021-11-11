@@ -153,67 +153,7 @@
                         </div>
                     </div>
                     <div class="app-card-body px-4 w-100">
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label">
-                                        <strong>Password</strong>
-                                    </div>
-                                    <div class="item-data">
-                                        ••••••••
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <button class="btn-sm app-btn-secondary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-                                        Change
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label">
-                                        <strong>Two-Factor Authentication</strong>
-                                    </div>
-                                    <div class="item-data">
-                                        @if ($user->two_factor_recovery_codes)
-                                            You have already activated two-factor authentication.
-                                        @else
-                                            You haven't set up two-factor authentication.
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    @if ($user->two_factor_recovery_codes)
-                                        <a class="btn-sm app-btn-secondary" href="#">
-                                            Manage
-                                        </a>
-                                    @else
-                                        <a class="btn-sm app-btn-secondary" href="#">
-                                            Set up
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label">
-                                        <strong>Last Login</strong>
-                                    </div>
-                                    <div class="item-data">
-                                        Not available
-                                    </div>
-                                </div>
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary disabled" href="#">
-                                        Change
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <livewire:account.security :user="$user" />
                     </div>
                 </div>
             </div>
@@ -315,11 +255,21 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="change2FAModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="updateTwoFactorAuthenticationModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <livewire:account.update-two-factor-authentication :user="$user" />
+            <livewire:account.manage-two-factor-authentication :user="$user" />
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    Livewire.on('two-factor-authentication-enabled', function() {
+        const modal = document.getElementById('updateTwoFactorAuthenticationModal'),
+              modalBS = new bootstrap.Modal(modal);
+        modalBS.show();
+    })
+</script>
 @endsection
